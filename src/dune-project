@@ -1,0 +1,17 @@
+(lang dune 3.17)
+
+(name aoc2024)
+
+(generate_opam_files true)
+
+(source
+ (github jogadordabeira/AdventOfCode2024))
+
+(authors "Alexandre Gomes")
+
+(package
+ (name aoc2024)
+ (synopsis "Advent of Code 2024")
+ (depends ocaml))
+
+; See the complete stanza docs at https://dune.readthedocs.io/en/stable/reference/dune-project/index.html
