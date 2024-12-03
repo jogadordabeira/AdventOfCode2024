@@ -3,6 +3,7 @@ open Core
 let day_mains =
   [ Aoc2024.Day01.main
   ; Aoc2024.Day02.main
+  ; Aoc2024.Day03.main
   ]
 
 let run_day day_number input_filename () =
