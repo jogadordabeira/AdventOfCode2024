@@ -2,16 +2,23 @@ open Base
 
 exception Could_not_find_point_in_matrix
 
-let find_point (matrix : 'a array array) ~f : int * int =
+type 'a point_info = 
+  { c : (int * int)
+  ; value : 'a
+  }
+
+let find_point (matrix : 'a array array) ~f : 'b point_info  =
   matrix
   |> Array.find_mapi ~f:(fun row_i column ->
          column
          |> Array.find_mapi ~f:(fun column_i p ->
-                if f p then Some column_i else None)
-         |> Option.bind ~f:(fun column_i -> Some (column_i, row_i)))
+                match f p with
+                | None -> None
+                | Some v -> Some (column_i, v))
+         |> Option.bind ~f:(fun (column_i, p) -> Some (column_i, row_i, p)))
   |> function
   | None -> raise Could_not_find_point_in_matrix
-  | Some c -> c
+  | Some (x, y, v) -> { c = (x, y); value = v }
 
 let find_points (matrix : 'a array array) ~f : (int * int) list =
   matrix
