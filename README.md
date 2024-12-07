@@ -7,7 +7,7 @@ Days completed:
 
 ![](https://geps.dev/progress/28)
 
-I'll stick to part 1 of the challenges this year.
+I'll stick to part 1 of the challenges this year (w/ some exceptions, perhaps).
 
 ## Run
 Includes VSCode dev container integration for OCaml 5.1 and the needed libraries.
