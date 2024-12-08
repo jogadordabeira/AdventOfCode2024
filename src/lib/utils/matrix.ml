@@ -20,12 +20,14 @@ let find_point (matrix : 'a array array) ~f : 'b point_info  =
   | None -> raise Could_not_find_point_in_matrix
   | Some (x, y, v) -> { c = (x, y); value = v }
 
-let find_points (matrix : 'a array array) ~f : (int * int) list =
+let find_points (matrix : 'a array array) ~f : ('b point_info) list =
   matrix
   |> Array.concat_mapi ~f:(fun row_i column ->
       column
         |> Array.filter_mapi ~f:(fun column_i x ->
-            if f x then Some (column_i, row_i) else None))
+            match f x with
+            | None -> None
+            | Some v -> Some { c = (column_i, row_i); value = v }))
   |> Array.to_list
 
 exception Could_not_get_all_coordinates_from_matrix
