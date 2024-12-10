@@ -5,3 +5,6 @@ let compare_tuple cmp1 cmp2 (x, y) (x', y') =
 let compare_tuple_simple cmp = compare_tuple cmp cmp
 let equal_tuple cmp1 cmp2 t1 t2 = compare_tuple cmp1 cmp2 t1 t2 = 0
 let equal_tuple' cmp = equal_tuple cmp cmp
+
+let show (x, y) =
+  Printf.sprintf "(%d, %d)" x y
