@@ -2,7 +2,7 @@
 
 (library
  (name aoc2024)
- (libraries base stdio batteries re)
+ (libraries base core stdio batteries re)
  (inline_tests)
  (preprocess
   (pps
