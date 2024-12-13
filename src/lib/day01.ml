@@ -1,4 +1,5 @@
 open Base
+open Utils.Tuple
 
 let parse_tuple (row: string) : (int * int) option =
   row
@@ -19,21 +20,21 @@ let main (rows: string list) =
 
 (* Some tests *)
 let%test "Parse (1)" = Option.equal
-  (Utils.Tuple.equal_tuple' Int.compare)
-  (parse_tuple "111 32") @@ Some (111, 32)
+  IntTuple.equal
+    (parse_tuple "111 32") @@ Some (111, 32)
 
 let%test "Parse (2)" = Option.equal
-  (Utils.Tuple.equal_tuple' Int.compare)
-  (parse_tuple "1 0") @@ Some (1, 0)
+  IntTuple.equal
+    (parse_tuple "1 0") @@ Some (1, 0)
 
 let%test "Parse (3)" = Option.equal
-  (Utils.Tuple.equal_tuple' Int.compare)
-  (parse_tuple "01 2") @@ Some (1, 2)
+  IntTuple.equal
+    (parse_tuple "01 2") @@ Some (1, 2)
 
 let%test "Parse (4)" = Option.equal
-  (Utils.Tuple.equal_tuple' Int.compare)
-  (parse_tuple "11132") @@ None
+  IntTuple.equal
+    (parse_tuple "11132") @@ None
 
 let%test "Parse (5)" = Option.equal
-  (Utils.Tuple.equal_tuple' Int.compare)
-  (parse_tuple "1f1 32") @@ None
+  IntTuple.equal
+    (parse_tuple "1f1 32") @@ None

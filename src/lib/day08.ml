@@ -1,5 +1,6 @@
 open Base
 open Utils.Matrix
+open Utils.Tuple
 
 let get_antinode len (x1, y1) (x2, y2) =
   let dist_x = Int.abs (x1 - x2) and dist_y = Int.abs (y1 - y2) in
@@ -18,7 +19,7 @@ let get_antinodes len antennas =
     let cs = antennas |> List.map ~f:(fun { c; value = _value } -> c) in
     List.cartesian_product cs cs
       |> List.concat_map ~f:(fun (c1, c2) ->
-          if Utils.Tuple.equal_tuple' Int.compare c1 c2 then [] else get_antinode len c1 c2)
+          if IntTuple.equal c1 c2 then [] else get_antinode len c1 c2)
   with _ -> []
 
 let solve len pts =
@@ -26,7 +27,7 @@ let solve len pts =
     |> List.sort ~compare:(fun { c = _c1; value = v1 } { c = _c2; value = v2 } -> Char.compare v1 v2)
     |> List.group ~break:(fun { c = _c1; value = v1 } { c = _c2; value = v2 } -> not @@ Char.equal v1 v2)
     |> List.concat_map ~f:(get_antinodes len)
-    |> List.dedup_and_sort ~compare:(Utils.Tuple.compare_tuple_simple Int.compare)
+    |> List.dedup_and_sort ~compare:IntTuple.compare
     |> List.length
 
 let main rows =

@@ -1,5 +1,6 @@
 open Base
 open Utils.Matrix
+open Utils.Tuple
 
 module Direction = struct
   type t = North | East | South | West
@@ -20,7 +21,7 @@ module Direction = struct
     | West  -> fun (x, y) -> (x - 1, y)
 
   let%test "Move" =
-    Utils.Tuple.equal_tuple' Int.compare (move East (0, 0)) (1, 0)
+    IntTuple.equal (move East (0, 0)) (1, 0)
 
   let next d =
     (* probably derive enum and do something with it here instead *)
@@ -57,7 +58,7 @@ let main rows =
   try
     m
       |> solve
-      |> List.dedup_and_sort ~compare:(Utils.Tuple.compare_tuple_simple Int.compare)
+      |> List.dedup_and_sort ~compare:IntTuple.compare
       |> List.length
       |> Printf.sprintf "Part 1: %d"
       |> Stdio.print_endline
