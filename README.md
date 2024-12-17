@@ -5,7 +5,7 @@ https://adventofcode.com/2024
 ## Progress
 Days completed:
 
-![](https://geps.dev/progress/56)
+![](https://geps.dev/progress/60)
 
 I'll stick to part 1 of the challenges this year (w/ some exceptions, perhaps).
 

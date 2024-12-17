@@ -45,3 +45,6 @@ let parse rows ~f =
   rows
     |> List.map ~f:(fun s -> s |> String.to_array |> Array.map ~f)
     |> List.to_array
+
+let show m to_show =
+  m |> Array.iter ~f:(fun row -> row |> Array.iter ~f:(fun x -> Stdio.printf "%c" @@ to_show x); Stdio.print_endline "")
