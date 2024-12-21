@@ -7,6 +7,8 @@ type 'a point_info =
   ; value : 'a
   }
 
+let get_c { c; value=_ } = c
+
 let find_point (matrix : 'a array array) ~f : 'b point_info  =
   matrix
   |> Array.find_mapi ~f:(fun row_i column ->
